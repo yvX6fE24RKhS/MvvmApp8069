@@ -1,9 +1,10 @@
-﻿<Application x:Class="MvvmApp.App"
+﻿<!--1.0.0.0-->
+<Application x:Class="MvvmApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MvvmApp"
-             StartupUri="MainWindow.xaml">
+             StartupUri="pack://application:,,,/MvvmApp.View;component/MainView.xaml"
+             >
     <Application.Resources>
-         
     </Application.Resources>
 </Application>
