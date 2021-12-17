@@ -13,7 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmApp.View", "MvvmApp.Vie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmApp.ViewModel", "MvvmApp.ViewModel\MvvmApp.ViewModel.csproj", "{F89D3019-94D0-46EF-94D1-8A17355637D4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archive", "Archive", "{7E0CF614-D2AF-4949-B833-D95670C7462E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ArchiveVersions", "ArchiveVersions\ArchiveVersions.shproj", "{E8EEE6CD-2A8A-4E84-8141-C9E6FBF6F039}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ArchiveVersions\ArchiveVersions.projitems*{e8eee6cd-2a8a-4e84-8141-c9e6fbf6f039}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -44,6 +51,7 @@ Global
 		{0BFF9DE8-471B-44C8-AE67-4546C4CA72C5} = {87BE020E-F504-4E40-8AF0-243FCB8C3095}
 		{27CF4439-669A-49B4-8393-B1723065958F} = {87BE020E-F504-4E40-8AF0-243FCB8C3095}
 		{F89D3019-94D0-46EF-94D1-8A17355637D4} = {87BE020E-F504-4E40-8AF0-243FCB8C3095}
+		{E8EEE6CD-2A8A-4E84-8141-C9E6FBF6F039} = {7E0CF614-D2AF-4949-B833-D95670C7462E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3D90A21-486A-405F-AA6D-836F8A31E5C6}

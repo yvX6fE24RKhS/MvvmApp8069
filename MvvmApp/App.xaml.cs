@@ -1,4 +1,6 @@
 ﻿//1.0.0.0//
+using MvvmApp.View;
+using MvvmApp.ViewModel;
 using System.Windows;
 
 namespace MvvmApp
@@ -8,5 +10,14 @@ namespace MvvmApp
    /// </summary>
    public partial class App : Application
    {
+      protected override void OnStartup(StartupEventArgs e)
+      {
+         base.OnStartup(e);
+
+         MainView mainWindow = new MainView();
+         MainViewModel context = new MainViewModel();
+         mainWindow.DataContext = context;
+         mainWindow.Show();
+      }
    }
 }
