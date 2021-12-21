@@ -1,8 +1,9 @@
-﻿//1.0.8011.*//
+﻿//1.0.8025.* : 1.0.8011.*//
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Windows.Data;
 using System.Windows.Input;
 using MvvmApp.Model;
 using MvvmApp.ViewModel.Commands;
@@ -32,8 +33,24 @@ namespace MvvmApp.ViewModel
 
       #region Properties
 
+      private CollectionViewSource _assemblies;
+      public ICollectionView Assemblies
+      {
+         get
+         {
+            if (_assemblies is null)
+            {
+               _assemblies = new CollectionViewSource();
+               _assemblies.Source = AssemblyNames;
+               _assemblies.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+            }
+            return _assemblies.View;
+         }
+      }
+
+
       public ObservableCollection<AssemblyName> AssemblyNames { get; set; } = new ObservableCollection<AssemblyName>();
-      
+
       #endregion Properties
 
       //public event PropertyChangedEventHandler PropertyChanged;
