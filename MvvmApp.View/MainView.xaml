@@ -1,17 +1,25 @@
-﻿<!--1.0.8025.* : 1.0.8024.*-->
-<Window x:Class="MvvmApp.View.MainView"
-		        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-		        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:vm="clr-namespace:MvvmApp.ViewModel;assembly=MvvmApp.ViewModel"
-              mc:Ignorable="d"
-              d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
-		        Title="MvvmApp" Height="450" Width="800"
-              >
+﻿<!--1.0.8026.* : 1.0.8025.*-->
+<Window  x:Class="MvvmApp.View.MainView"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+		   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:vm="clr-namespace:MvvmApp.ViewModel;assembly=MvvmApp.ViewModel"
+         mc:Ignorable="d"
+         d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+         DataContext="{Store vm:MainViewModel}"
+         WindowState="{Binding '[WindowState, Normal]', Mode=TwoWay}" 
+         ResizeMode="{Binding '[ResizeMode, CanResizeWithGrip]', Mode=TwoWay}"
+         Height="{Binding '[Height, 300]', Mode=TwoWay}" 
+         Width="{Binding '[Width, 400]', Mode=TwoWay}" 
+         Left="{Binding '[Left, NaN]', Mode=TwoWay}" 
+         Top="{Binding '[Top, NaN]', Mode=TwoWay}"
+         ShowActivated="True"
+		   Title="MvvmApp"
+         >
    <Window.Resources>
-      <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Templates/AssemblyInfoTemplate.xaml"/> 
+      <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Templates/AssemblyInfoTemplate.xaml"/>
    </Window.Resources>
 
    <Grid>
@@ -30,8 +38,6 @@
          <!--#region    DataGrid версий сборок в решении-->
          <ContentControl Content="{Binding}" ContentTemplate="{StaticResource AssembliesTemplate}"/>
          <!--#endregion DataGrid версий сборок в решении-->
-
-         
       </StackPanel>
    </Grid>
 </Window>

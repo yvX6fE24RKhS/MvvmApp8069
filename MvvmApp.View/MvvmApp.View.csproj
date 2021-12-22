@@ -89,6 +89,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DockPanelSplitter\DockPanelSplitter.csproj">
+      <Project>{60bcd395-0a26-406a-862a-615457cbfd8f}</Project>
+      <Name>DockPanelSplitter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation\Foundation.csproj">
+      <Project>{2a139dcd-07d8-435f-97d5-a04019f553dc}</Project>
+      <Name>Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MvvmApp.ViewModel\MvvmApp.ViewModel.csproj">
       <Project>{f89d3019-94d0-46ef-94d1-8a17355637d4}</Project>
       <Name>MvvmApp.ViewModel</Name>

@@ -91,6 +91,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foundation\Foundation.csproj">
+      <Project>{2a139dcd-07d8-435f-97d5-a04019f553dc}</Project>
+      <Name>Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MvvmApp.Model\MvvmApp.Model.csproj">
       <Project>{0bff9de8-471b-44c8-ae67-4546c4ca72c5}</Project>
       <Name>MvvmApp.Model</Name>

@@ -1,8 +1,8 @@
-﻿//1.0.8025.* : 1.0.8011.*//
+﻿//1.0.8026.* : 1.0.8025.*//
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Windows.Data;
 using System.Windows.Input;
 using MvvmApp.Model;
@@ -10,7 +10,8 @@ using MvvmApp.ViewModel.Commands;
 
 namespace MvvmApp.ViewModel
 {
-   public class MainViewModel //: INotifyPropertyChanged
+   [DataContract]
+   public class MainViewModel : Foundation.ViewModel
    {
       #region Commands
 
@@ -48,14 +49,20 @@ namespace MvvmApp.ViewModel
          }
       }
 
-
       public ObservableCollection<AssemblyName> AssemblyNames { get; set; } = new ObservableCollection<AssemblyName>();
 
       #endregion Properties
 
-      //public event PropertyChangedEventHandler PropertyChanged;
+      #region Methods
 
-      //private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-      //      => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+      /// Метод вызывается после того как объект будет десериализован. Используется вместо конструктора.
+      [OnDeserialized]
+      private void Initialize(StreamingContext context = default(StreamingContext))
+      {
+         if(AssemblyNames is null)
+            AssemblyNames = new ObservableCollection<AssemblyName>();
+      }
+
+      #endregion Methods
    }
 }
