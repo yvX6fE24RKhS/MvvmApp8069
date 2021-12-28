@@ -1,4 +1,4 @@
-﻿<!--1.0.8026.* : 1.0.8025.*-->
+﻿<!--1.0.8032.* : 1.0.8026.*-->
 <Window  x:Class="MvvmApp.View.MainView"
          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,6 +6,8 @@
          xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 		   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:vm="clr-namespace:MvvmApp.ViewModel;assembly=MvvmApp.ViewModel"
+         xmlns:osc="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"
+         xmlns:sys="clr-namespace:System;assembly=mscorlib"
          mc:Ignorable="d"
          d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
          DataContext="{Store vm:MainViewModel}"
@@ -19,25 +21,70 @@
 		   Title="MvvmApp"
          >
    <Window.Resources>
-      <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Templates/AssemblyInfoTemplate.xaml"/>
+      <ResourceDictionary>
+         <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/AssemblyInfoTemplate.xaml"/>
+            <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/Styles.xaml"/>
+         </ResourceDictionary.MergedDictionaries>
+         <sys:Double x:Key="MainControlPanelWidth"/>
+      </ResourceDictionary>
    </Window.Resources>
 
    <Grid>
-      <StackPanel Orientation="Vertical">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="24" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="24" />
+         <RowDefinition Height="0" />
+      </Grid.RowDefinitions>
+
+      <TextBlock Grid.Row="0" Text="StaticResource MainMenuSet" />
+      <!--<Menu Grid.Row="0" ItemsSource="{StaticResource MainMenuSet}" />-->
+
+      <Border Grid.Row="1" >
+         <!--Style="{StaticResource MainBorderStyle}">-->
+         <DockPanel>
+            <Grid Name="MainControlPanel"
+                  DockPanel.Dock="Left"
+                  Width="{Binding '[MainControlPanelWidth, 120]', Mode=TwoWay}"
+                  MinWidth="0" 
+                  >
+               <!--Width="{Binding MainControlPanelWidth, Mode=TwoWay}"-->
+               <TextBlock Text ="ControlPanelTemplate" />
+               <!--<ContentControl   Content="{Binding}"
+                                 ContentTemplate="{StaticResource ControlPanelTemplate}"
+                                 />-->
+            </Grid>
+            <osc:DockPanelSplitter DockPanel.Dock="Left" Style="{StaticResource VerticalBevelGripStyle}"/>
+            <StackPanel Name="MainWorkspace" Orientation="Vertical">
+               <TextBlock Text ="WorkspacesTemplate" />
+
+               <!--#region    DataGrid версий сборок в решении-->
+               <ContentControl Content="{Binding}" ContentTemplate="{StaticResource AssembliesTemplate}"/>
+               <!--#endregion DataGrid версий сборок в решении-->
+
+               <!--<ContentControl   Content="{Binding}"
+                                 ContentTemplate="{StaticResource WorkspacesTemplate}"
+                                 />-->
+            </StackPanel>
+         </DockPanel>
+      </Border>
+
+      <TextBlock Grid.Row="2" Text ="StatusBarTemplate" />
+      <!--<ContentControl Grid.Row="2" Content="{Binding}" ContentTemplate ="{StaticResource StatusBarTemplate}" />-->
+
+      <StackPanel Grid.Row="3" Orientation="Vertical">
          <!--#region    Assembly.GetExecutingAssembly()-->
          <!--Свернутый блок текста, содержащий после инициализации полное имя текущей сборки и тригер оповещающий о загрузке ViewModel посредством вызова команды-->
          <TextBlock x:Name="txbAssemblyVersion" Visibility="Collapsed">
             <i:Interaction.Triggers>
                <i:EventTrigger EventName="Loaded">          
+                  <!--<i:InvokeCommandAction Command="{Binding GetViewAssemblyCommand}" CommandParameter="{Binding ElementName=txbAssemblyVersion, Path=Text}"/>-->
                   <i:InvokeCommandAction Command="{Binding GetViewAssemblyCommand}" CommandParameter="{Binding ElementName=txbAssemblyVersion, Path=Text}"/>
                </i:EventTrigger>
             </i:Interaction.Triggers>
          </TextBlock>
          <!--#endregion Assembly.GetExecutingAssembly()-->
-
-         <!--#region    DataGrid версий сборок в решении-->
-         <ContentControl Content="{Binding}" ContentTemplate="{StaticResource AssembliesTemplate}"/>
-         <!--#endregion DataGrid версий сборок в решении-->
       </StackPanel>
    </Grid>
 </Window>
