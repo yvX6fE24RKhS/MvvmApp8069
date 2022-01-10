@@ -1,4 +1,4 @@
-﻿<!--1.0.8032.* : 1.0.8026.*-->
+﻿<!--1.0.8045.* : 1.0.8032.*-->
 <Window  x:Class="MvvmApp.View.MainView"
          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -24,6 +24,7 @@
       <ResourceDictionary>
          <ResourceDictionary.MergedDictionaries>
             <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/AssemblyInfoTemplate.xaml"/>
+            <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/StatusBarTemplate.xaml"/>
             <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/Styles.xaml"/>
          </ResourceDictionary.MergedDictionaries>
          <sys:Double x:Key="MainControlPanelWidth"/>
@@ -70,8 +71,7 @@
          </DockPanel>
       </Border>
 
-      <TextBlock Grid.Row="2" Text ="StatusBarTemplate" />
-      <!--<ContentControl Grid.Row="2" Content="{Binding}" ContentTemplate ="{StaticResource StatusBarTemplate}" />-->
+      <ContentControl Grid.Row="2" Content="{Binding}" ContentTemplate ="{StaticResource StatusBarTemplate}" />
 
       <StackPanel Grid.Row="3" Orientation="Vertical">
          <!--#region    Assembly.GetExecutingAssembly()-->

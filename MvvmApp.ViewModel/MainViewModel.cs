@@ -1,4 +1,4 @@
-﻿//1.0.8026.* : 1.0.8025.*//
+﻿//1.0.8045.* : 1.0.8026.*//
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reflection;
@@ -13,10 +13,22 @@ namespace MvvmApp.ViewModel
    [DataContract]
    public class MainViewModel : Foundation.ViewModel
    {
-      #region Commands
 
-      private ICommand _getViewAssemblyCommand;
-      public ICommand GetViewAssemblyCommand => _getViewAssemblyCommand ?? (_getViewAssemblyCommand = new RelayCommand(OnGetViewAssembly));
+      #region AssemblyViewModel
+
+      /// <summary> коллекция сборок </summary>
+      public ObservableCollection<AssemblyName> AssemblyNames { get; set; } = new ObservableCollection<AssemblyName>();
+
+      /// <summary> версия сборки </summary>
+      [DataMember]
+      public string AssemblyVersion
+      {
+         get => Get(() => AssemblyVersion);
+         set => Set(() => AssemblyVersion, value);
+      }
+
+      /// <summary> команда создания коллекции сборок </summary>
+      public ICommand GetViewAssemblyCommand => Get(() => GetViewAssemblyCommand, new RelayCommand(OnGetViewAssembly));
 
       private void OnGetViewAssembly(object parameter)
       {
@@ -28,30 +40,12 @@ namespace MvvmApp.ViewModel
             assemblyRepository.Add(Assembly.GetExecutingAssembly().GetName()); // MvvmApp.ViewModel
             assemblyRepository.Add(Assembly.GetEntryAssembly().GetName()); // MvvmApp
             assemblyRepository.GetVersions().ForEach(x => AssemblyNames.Add(x));
-         }
-      }
-      #endregion Commands
 
-      #region Properties
-
-      private CollectionViewSource _assemblies;
-      public ICollectionView Assemblies
-      {
-         get
-         {
-            if (_assemblies is null)
-            {
-               _assemblies = new CollectionViewSource();
-               _assemblies.Source = AssemblyNames;
-               _assemblies.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
-            }
-            return _assemblies.View;
+            AssemblyVersion = assemblyRepository.LastVersion.ToString();
          }
       }
 
-      public ObservableCollection<AssemblyName> AssemblyNames { get; set; } = new ObservableCollection<AssemblyName>();
-
-      #endregion Properties
+      #endregion AssemblyViewModel
 
       #region Methods
 
@@ -59,7 +53,7 @@ namespace MvvmApp.ViewModel
       [OnDeserialized]
       private void Initialize(StreamingContext context = default(StreamingContext))
       {
-         if(AssemblyNames is null)
+         if (AssemblyNames is null)
             AssemblyNames = new ObservableCollection<AssemblyName>();
       }
 
