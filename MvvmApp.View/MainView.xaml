@@ -1,4 +1,4 @@
-﻿<!--1.0.8045.* : 1.0.8032.*-->
+﻿<!--1.0.8046.* : 1.0.8045.*-->
 <Window  x:Class="MvvmApp.View.MainView"
          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -20,10 +20,17 @@
          ShowActivated="True"
 		   Title="MvvmApp"
          >
+   <Window.CommandBindings>
+      <CommandBinding   Command="{x:Static ApplicationCommands.Close}"
+                        Executed="ExecutedCloseCommand"
+                        CanExecute="CanExecuteCloseCommand" />
+   </Window.CommandBindings>
+
    <Window.Resources>
       <ResourceDictionary>
          <ResourceDictionary.MergedDictionaries>
             <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/AssemblyInfoTemplate.xaml"/>
+            <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/MainMenuSet.xaml"/>
             <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/StatusBarTemplate.xaml"/>
             <ResourceDictionary Source="pack://application:,,,/MvvmApp.View;component//Resources/Styles.xaml"/>
          </ResourceDictionary.MergedDictionaries>
@@ -39,8 +46,8 @@
          <RowDefinition Height="0" />
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0" Text="StaticResource MainMenuSet" />
-      <!--<Menu Grid.Row="0" ItemsSource="{StaticResource MainMenuSet}" />-->
+      <!--<TextBlock Grid.Row="0" Text="StaticResource MainMenuSet" />-->
+      <Menu Grid.Row="0" ItemsSource="{StaticResource MainMenuSet}" />
 
       <Border Grid.Row="1" >
          <!--Style="{StaticResource MainBorderStyle}">-->

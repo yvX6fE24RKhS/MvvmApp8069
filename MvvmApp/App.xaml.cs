@@ -1,6 +1,8 @@
 ﻿//1.0.8026.* : 1.0.0.0//
 using Foundation;
+using System.Diagnostics;
 using System.Windows;
+using System;
 
 namespace MvvmApp
 {
@@ -9,19 +11,17 @@ namespace MvvmApp
    /// </summary>
    public partial class App : Application
    {
-      //protected override void OnStartup(StartupEventArgs e)
-      //{
-      //   base.OnStartup(e);
-
-      //   MainView mainWindow = new MainView();
-      //   //MainViewModel context = new MainViewModel();
-      //   object context = Store(MainViewModel);
-      //   mainWindow.DataContext = context;
-      //   mainWindow.Show();
-      //}
-
+      /// <summary>
+      /// Вызывает событие <c>System.Windows.Application.Exit</c>.
+      /// </summary>
+      /// <param name="e">Объект класса <c>System.Windows.ExitEventArgs</c>, содержащий данные события.</param>
       protected override void OnExit(ExitEventArgs e)
       {
+
+#if DEBUG
+         Debug.WriteLine(message: $"Отладка: App.OnExit executing.");
+#endif
+
          // Сериализация свойств объектов.
          Store.Snapshot();
 

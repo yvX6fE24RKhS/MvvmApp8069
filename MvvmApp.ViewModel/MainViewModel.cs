@@ -16,10 +16,14 @@ namespace MvvmApp.ViewModel
 
       #region AssemblyViewModel
 
-      /// <summary> коллекция сборок </summary>
+      /// <summary>
+      /// Коллекция сборок. 
+      /// </summary>
       public ObservableCollection<AssemblyName> AssemblyNames { get; set; } = new ObservableCollection<AssemblyName>();
 
-      /// <summary> версия сборки </summary>
+      /// <summary>
+      /// Версия сборки. 
+      /// </summary>
       [DataMember]
       public string AssemblyVersion
       {
@@ -27,9 +31,15 @@ namespace MvvmApp.ViewModel
          set => Set(() => AssemblyVersion, value);
       }
 
-      /// <summary> команда создания коллекции сборок </summary>
+      /// <summary>
+      /// Команда заполнения коллекции сборок.
+      /// </summary>
       public ICommand GetViewAssemblyCommand => Get(() => GetViewAssemblyCommand, new RelayCommand(OnGetViewAssembly));
 
+      /// <summary>
+      /// Метод, добавляющий в коллекцию текущие сборки представления, модели представления и приложения.
+      /// </summary>
+      /// <param name="parameter">Полное имя представления.</param>
       private void OnGetViewAssembly(object parameter)
       {
          AssemblyName assemblyName = new AssemblyName((string)parameter);
@@ -49,7 +59,8 @@ namespace MvvmApp.ViewModel
 
       #region Methods
 
-      /// Метод вызывается после того как объект будет десериализован. Используется вместо конструктора.
+      /// <summary> Метод вызывается после того как объект будет десериализован. Используется вместо конструктора. </summary>
+      /// <param name="context">Поток сериализации.</param>
       [OnDeserialized]
       private void Initialize(StreamingContext context = default(StreamingContext))
       {
