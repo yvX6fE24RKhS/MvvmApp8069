@@ -86,7 +86,6 @@
          <TextBlock x:Name="txbAssemblyVersion" Visibility="Collapsed">
             <i:Interaction.Triggers>
                <i:EventTrigger EventName="Loaded">          
-                  <!--<i:InvokeCommandAction Command="{Binding GetViewAssemblyCommand}" CommandParameter="{Binding ElementName=txbAssemblyVersion, Path=Text}"/>-->
                   <i:InvokeCommandAction Command="{Binding GetViewAssemblyCommand}" CommandParameter="{Binding ElementName=txbAssemblyVersion, Path=Text}"/>
                </i:EventTrigger>
             </i:Interaction.Triggers>

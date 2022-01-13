@@ -1,4 +1,4 @@
-﻿//1.0.8045.* : 1.0.8026.*//
+﻿//1.0.8048.* : 1.0.8045.*//
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reflection;
@@ -66,6 +66,16 @@ namespace MvvmApp.ViewModel
       {
          if (AssemblyNames is null)
             AssemblyNames = new ObservableCollection<AssemblyName>();
+
+         InitialazeCommandCollection();
+      }
+
+      private void InitialazeCommandCollection() 
+      {
+         this[ViewModelCommands.Test01Command].Executed += (sender, args) => ViewModelCommands.RunTest01();
+         this[ViewModelCommands.Test02Command].Executed += (sender, args) => ViewModelCommands.RunTest02(args);
+         this[ViewModelCommands.Test03Command].Executed += (sender, args) => ViewModelCommands.RunTest03(sender, args);
+         this[ViewModelCommands.Test04Command].Executed += (sender, args) => ViewModelCommands.RunTest04(sender, args);
       }
 
       #endregion Methods

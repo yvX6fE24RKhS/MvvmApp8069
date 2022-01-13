@@ -3,15 +3,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
                     >
-   <CollectionViewSource Source="{Binding Path=AssemblyNames}" x:Key="Assemblies">
+   <CollectionViewSource Source="{Binding Path=AssemblyNames}" x:Key="AssemblyNamesCollectionViewSource">
       <CollectionViewSource.SortDescriptions>
          <scm:SortDescription PropertyName="Name"/>
       </CollectionViewSource.SortDescriptions> 
    </CollectionViewSource>
 
    <DataTemplate x:Key="AssembliesTemplate">
-      <DataGrid   x:Name="dgAssemblies"
-                  ItemsSource="{Binding Source={StaticResource Assemblies}}" 
+      <DataGrid   ItemsSource="{Binding Source={StaticResource AssemblyNamesCollectionViewSource}}" 
                   AutoGenerateColumns ="False"
                   CanUserAddRows="False"
                   HorizontalAlignment="Left"
