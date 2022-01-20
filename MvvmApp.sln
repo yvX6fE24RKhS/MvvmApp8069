@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dev", "Dev", "{384FF536-0E6
 		MvvmApp\bin\Debug\MainViewModel.json = MvvmApp\bin\Debug\MainViewModel.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppLog", "AppLog\AppLog.csproj", "{27FC4ECF-7AA4-41CD-8F25-75E9BC8363F1}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ArchiveVersions\ArchiveVersions.projitems*{e8eee6cd-2a8a-4e84-8141-c9e6fbf6f039}*SharedItemsImports = 13
@@ -61,6 +63,10 @@ Global
 		{2A139DCD-07D8-435F-97D5-A04019F553DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A139DCD-07D8-435F-97D5-A04019F553DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A139DCD-07D8-435F-97D5-A04019F553DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27FC4ECF-7AA4-41CD-8F25-75E9BC8363F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27FC4ECF-7AA4-41CD-8F25-75E9BC8363F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27FC4ECF-7AA4-41CD-8F25-75E9BC8363F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27FC4ECF-7AA4-41CD-8F25-75E9BC8363F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{E8EEE6CD-2A8A-4E84-8141-C9E6FBF6F039} = {7E0CF614-D2AF-4949-B833-D95670C7462E}
 		{60BCD395-0A26-406A-862A-615457CBFD8F} = {9AE40B7B-628B-4569-9190-ED7F43A14364}
 		{2A139DCD-07D8-435F-97D5-A04019F553DC} = {9AE40B7B-628B-4569-9190-ED7F43A14364}
+		{27FC4ECF-7AA4-41CD-8F25-75E9BC8363F1} = {9AE40B7B-628B-4569-9190-ED7F43A14364}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3D90A21-486A-405F-AA6D-836F8A31E5C6}

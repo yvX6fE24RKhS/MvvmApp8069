@@ -91,6 +91,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppLog\AppLog.csproj">
+      <Project>{27fc4ecf-7aa4-41cd-8f25-75e9bc8363f1}</Project>
+      <Name>AppLog</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DockPanelSplitter\DockPanelSplitter.csproj">
       <Project>{60bcd395-0a26-406a-862a-615457cbfd8f}</Project>
       <Name>DockPanelSplitter</Name>
