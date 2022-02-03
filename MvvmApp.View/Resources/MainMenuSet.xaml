@@ -10,9 +10,9 @@
       </MenuItem>
       <MenuItem x:Name="MainItemTest" Header="Test">
          <MenuItem Header="VMC RelayCommand w/o params"  Command="vmc:ViewModelCommands.Test01Command"/>
-         <MenuItem Header="VMC RelayCommand w params"    Command="vmc:ViewModelCommands.Test02Command" CommandParameter="{Binding Path=AssemblyVersion}"/>
-         <MenuItem Header="VMC RoutedCommand w/o params" Command="vmc:ViewModelCommands.Test03Command"/>
-         <MenuItem Header="VMC RoutedCommand w params"   Command="vmc:ViewModelCommands.Test04Command" CommandParameter="{Binding Path=AssemblyVersion}"/>
+         <MenuItem Header="VMC RelayCommand w params"    Command="vmc:ViewModelCommands.Test02Command" CommandParameter="{Binding Path=TestStr}"/>
+         <MenuItem Header="VMC RoutedCommand w/o params" Command="vmc:ViewModelCommands.Test03Command" CommandTarget="{Binding ElementName=MainItemTest}"/>
+         <MenuItem Header="VMC RoutedCommand w params"   Command="vmc:ViewModelCommands.Test04Command" CommandParameter="{Binding Path=TestStr}"/>
          <!--<MenuItem x:Name="MainItemCreateTabSample" Header="CreateTab" />         --><!-- Command="commands:ViewModelCommands.CreateTabSampleCommand"/>-->
       </MenuItem>
       <MenuItem x:Name="MainItemView" Header="Вид">

@@ -18,7 +18,7 @@ namespace MvvmApp.View
       {
          InitializeComponent();
          // Сборка текущего проекта.
-         txbAssemblyVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().FullName;
+         // txbAssemblyVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().FullName;
       }
 
       #endregion Constructors
@@ -40,5 +40,7 @@ namespace MvvmApp.View
       private void ExecutedCloseCommand(object sender, ExecutedRoutedEventArgs e) => Close();
 
       #endregion ApplicationCommands.Close
+
+      public string GetAssemblyVersion() => System.Reflection.Assembly.GetExecutingAssembly().FullName;
    }
 }

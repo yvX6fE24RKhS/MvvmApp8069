@@ -1,4 +1,5 @@
 ﻿//1.0.8055.*//
+using System.Collections.Generic;
 using AppLog.Enums;
 
 namespace AppLog.Interfaces
@@ -18,13 +19,13 @@ namespace AppLog.Interfaces
       /// <summary>
       /// Инициатор события.
       /// </summary>
-      string Initiator { get; set; }
+      KeyValuePair<int, string> Initiator { get; set; }
 
       /// <summary>
       /// Категория события.
       /// </summary>
-      string Category { get; set; }
-
+      KeyValuePair<int, string> Category { get; set; }
+      
       /// <summary>
       /// Событие приведшее к созданию записи.
       /// </summary>

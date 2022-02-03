@@ -5,6 +5,8 @@ using System.Windows;
 using AppLog;
 using AppLog.Enums;
 using Foundation;
+using MvvmApp.View;
+using MvvmApp.ViewModel;
 using MvvmApp.ViewModel.Enums;
 
 namespace MvvmApp
@@ -14,12 +16,20 @@ namespace MvvmApp
    /// </summary>
    public partial class App : Application
    {
+      #region Fields
+      private KeyValuePair<int, string> _init = new KeyValuePair<int, string>((int) Initiator.app, Initiator.app.ToString());
+      #endregion Fields
+
       #region Properties
+
+      public MainView MainView { get; private set; }
+
+      public MainViewModel MainViewModel { get; private set; }
 
       /// <summary>
       /// Журнал текущей сессии.
       /// </summary>
-      internal static Log Log { get; set; }
+      public static Log Log { get; set; }
 
       #endregion Properties
 
@@ -36,16 +46,16 @@ namespace MvvmApp
          Startup += (sender, args) => Log.Append(
             this,
             new EventInfo(
-               init: Initiator.app.ToString(),
+               init: _init,
                evnt: "Startup",
                msg: $"Пользователь {System.Security.Principal.WindowsIdentity.GetCurrent().Name} запустил приложение {AppDomain.CurrentDomain.FriendlyName} ({System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()})."
             )
          );
-         //Exit += (sender, args) => App_OnExit(sender, args);
+         
          Exit += (sender, args) => Log.Append(
             this,
             new EventInfo(
-               init: Initiator.app.ToString(),
+               init: _init,
                evnt: "Exit",
                msg: $"Работа приложения {AppDomain.CurrentDomain.FriendlyName} завершилась с кодом {args.ApplicationExitCode}."
             )
@@ -53,8 +63,26 @@ namespace MvvmApp
 
          Exit += (sender, args) => Log.Save();
       }
-      
+
       #endregion Constructors
+
+      protected override void OnStartup(StartupEventArgs e)
+      {
+
+#if DEBUG
+         Debug.WriteLine(message: $"Отладка: App.OnStartup executing.");
+#endif
+
+         base.OnStartup(e);
+         MainViewModel = Store.OfType<MainViewModel>();
+         MainViewModel.AppLog = Log;
+         MainView = new MainView
+         {
+            DataContext = MainViewModel
+         };
+         MainViewModel.FillAssemblyRepository(MainView.GetAssemblyVersion());
+         MainView.Show();
+      }
 
       /// <summary>
       /// Вызывает событие <c>System.Windows.Application.Exit</c>.
@@ -71,7 +99,7 @@ namespace MvvmApp
          Log.Append(
             this,
             new EventInfo(
-               init: Initiator.app.ToString(),
+               init: _init,
                evnt: "Exit",
                msg: "Началась сериализация свойств объектов приложения."
             )
@@ -84,7 +112,7 @@ namespace MvvmApp
          Log.Append(
             this,
             new EventInfo(
-               init: Initiator.app.ToString(),
+               init: _init,
                evnt: "Exit",
                msg: "Сериализация свойств объектов приложения завершена."
             )

@@ -74,7 +74,10 @@
   <ItemGroup>
     <Compile Include="Enums\SerializationFormat.cs" />
     <Compile Include="EventInfo.cs" />
+    <Compile Include="EventInitiator.cs" />
+    <Compile Include="KeyValuePair.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="LogFilter.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="Enums\Severity.cs" />
     <Compile Include="Interfaces\IEventInfo.cs" />

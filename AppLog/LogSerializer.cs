@@ -71,7 +71,7 @@ namespace AppLog
       /// Формирует полное имя файла, включая путь и расширение.
       /// </summary>
       /// <returns>Строка, содержащая полное имя файла.</returns>
-      private string GetFullName() => $"{GetPathName()}{((LogDate == DateTime.MinValue) ? DateTime.Today : LogDate):yyyyMMdd}.{SerializationFormat}";
+      private string GetFullName() => $"{GetPathName()}{((LogDate == DateTime.MinValue) ? DateTime.Today : LogDate):yyyyMMdd}.log.{SerializationFormat}";
 
       /// <summary>
       /// Проверяет, существует ли файл.

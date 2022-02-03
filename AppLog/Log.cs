@@ -36,6 +36,11 @@ namespace AppLog
       public Record LastRecord { get; private set; }
 
       #endregion ILog Members
+
+      /// <summary>
+      /// 
+      /// </summary>
+      public LogFilter LogFilter { get; set; }
       #endregion Properties
 
       #region Constructors
@@ -85,7 +90,7 @@ namespace AppLog
       public void Append(Record logEvent)
       {
          // защита от перзаписи журнал событий текущего сеанса
-         if (LogDate == DateTime.MinValue)
+         if (CanAppend(logEvent))
          {
             LastRecord = logEvent;
             Records.Add(logEvent);
@@ -131,6 +136,20 @@ namespace AppLog
       }
 
       #endregion ILog Members
+
+      private bool CanAppend(Record record)
+      {
+         if (LogDate != DateTime.MinValue)
+            return false;
+
+         if (LogFilter is null)
+            return true;
+
+         if (LogFilter.Contains(record))
+            return true;
+         else
+            return false;
+      }
       #endregion Methods
    }
 }

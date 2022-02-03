@@ -90,10 +90,17 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\ViewModelCommands.cs" />
     <Compile Include="Enums\Initiator.cs" />
+    <Compile Include="Enums\UserEventCaregory.cs" />
+    <Compile Include="Helpers\DefaultLogFilter.cs" />
+    <Compile Include="Helpers\LogFilter.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppLog\AppLog.csproj">
+      <Project>{27FC4ECF-7AA4-41CD-8F25-75E9BC8363F1}</Project>
+      <Name>AppLog</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foundation\Foundation.csproj">
       <Project>{2a139dcd-07d8-435f-97d5-a04019f553dc}</Project>
       <Name>Foundation</Name>

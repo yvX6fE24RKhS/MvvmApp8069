@@ -7,12 +7,32 @@ using System.Windows.Data;
 using System.Windows.Input;
 using MvvmApp.Model;
 using MvvmApp.ViewModel.Commands;
+using AppLog;
+using AppLog.Enums;
+using MvvmApp.ViewModel.Helpers;
+using System.Windows;
 
 namespace MvvmApp.ViewModel
 {
    [DataContract]
    public class MainViewModel : Foundation.ViewModel
    {
+
+      #region ApplicationLog Properties
+
+      /// <summary>
+      /// Фильтр журналируемых событий.
+      /// </summary>
+      [DataMember]
+      public LogFilter AppLogFilter
+      {
+         get => Get(() => AppLogFilter);
+         set => Set(() => AppLogFilter, value);
+      }
+
+      public Log AppLog { get; set; }
+
+      #endregion ApplicationLog Properties
 
       #region AssemblyViewModel
 
@@ -31,16 +51,36 @@ namespace MvvmApp.ViewModel
          set => Set(() => AssemblyVersion, value);
       }
 
-      /// <summary>
-      /// Команда заполнения коллекции сборок.
-      /// </summary>
-      public ICommand GetViewAssemblyCommand => Get(() => GetViewAssemblyCommand, new RelayCommand(OnGetViewAssembly));
+      public string TestStr
+      {
+         get => Get(() => TestStr, "DefaultTestString");
+         set => Set(() => TestStr, value);
+      }
+
+      ///// <summary>
+      ///// Версия сборки представления. 
+      ///// </summary>
+      //public string ViewAssemblyVersion
+      //{
+      //   get => Get(() => ViewAssemblyVersion);
+      //   set
+      //   {
+      //      Set(() => ViewAssemblyVersion, value);
+      //      if(!string.IsNullOrWhiteSpace(value)) 
+      //         OnGetViewAssembly(value);
+      //   }
+      //}
+
+      ///// <summary>
+      ///// Команда заполнения коллекции сборок.
+      ///// </summary>
+      //public ICommand GetViewAssemblyCommand => Get(() => GetViewAssemblyCommand, new RelayCommand(FillAssemblyRepository));
 
       /// <summary>
       /// Метод, добавляющий в коллекцию текущие сборки представления, модели представления и приложения.
       /// </summary>
       /// <param name="parameter">Полное имя представления.</param>
-      private void OnGetViewAssembly(object parameter)
+      public void FillAssemblyRepository(object parameter)
       {
          AssemblyName assemblyName = new AssemblyName((string)parameter);
          if (assemblyName != null)
@@ -66,6 +106,9 @@ namespace MvvmApp.ViewModel
       {
          if (AssemblyNames is null)
             AssemblyNames = new ObservableCollection<AssemblyName>();
+
+         if (AppLogFilter is null)
+            AppLogFilter = DefaultLogFilter.Get();
 
          InitialazeCommandCollection();
       }

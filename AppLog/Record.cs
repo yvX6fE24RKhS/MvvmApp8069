@@ -2,6 +2,7 @@
 using AppLog.Enums;
 using AppLog.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace AppLog
 {
@@ -20,8 +21,8 @@ namespace AppLog
       #region IEventInfo Memebers
 
       public Severity Severity { get; set; }
-      public string Initiator { get; set; }
-      public string Category { get; set; }
+      public KeyValuePair<int, string> Initiator { get; set; }
+      public KeyValuePair<int, string> Category { get; set; }
       public string Event { get; set; }
       public string Message { get; set; }
 
@@ -40,8 +41,8 @@ namespace AppLog
          return $"" +
          $"Moment: {Moment.ToLongTimeString()}; " +
          $"Severity: {Severity}; " +
-         $"Initiator: {Initiator}; " +
-         $"Category: {Category}; " +
+         $"Initiator: {Initiator.Value}; " +
+         $"Category: {Category.Value}; " +
          $"Sender: {Sender}; " +
          $"Event: {Event}; " +
          $"Message: {Message};";

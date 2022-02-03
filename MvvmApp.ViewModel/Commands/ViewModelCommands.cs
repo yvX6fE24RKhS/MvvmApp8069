@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Foundation;
 
@@ -18,10 +19,13 @@ namespace MvvmApp.ViewModel.Commands
       /// Тестовая команда.
       /// </summary>
       public static ICommand Test01Command { get; private set; } = new RelayCommand(obj => RunTest01(), obj => true);
-      public static void RunTest01() =>
+      public static void RunTest01()
+      {
 #if DEBUG
          Debug.WriteLine(message: $"Отладка: ViewModelCommands.RunTest01 executing.");
 #endif
+
+      }
 
       /// <summary>
       /// Тестовая команда.
@@ -37,7 +41,7 @@ namespace MvvmApp.ViewModel.Commands
       /// <summary>
       /// Тестовая команда.
       /// </summary>
-      public static RoutedCommand Test03Command { get; private set; } = new RoutedCommand("Test03Command", OwnerType);
+      public static RoutedCommand Test03Command { get; private set; } = new RoutedCommand("Test03Command", OwnerType) { };
       public static void RunTest03(object sender, ExecutedRoutedEventArgs e) =>
 #if DEBUG
          Debug.WriteLine(message: $"Отладка: ViewModelCommands.RunTest03 executing.\n" +

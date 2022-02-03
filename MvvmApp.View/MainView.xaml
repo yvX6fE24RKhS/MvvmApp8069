@@ -10,7 +10,6 @@
          xmlns:sys="clr-namespace:System;assembly=mscorlib"
          mc:Ignorable="d"
          d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
-         DataContext="{Store vm:MainViewModel}"
          WindowState="{Binding '[WindowState, Normal]', Mode=TwoWay}" 
          ResizeMode="{Binding '[ResizeMode, CanResizeWithGrip]', Mode=TwoWay}"
          Height="{Binding '[Height, 300]', Mode=TwoWay}" 
@@ -20,6 +19,7 @@
          ShowActivated="True"
 		   Title="MvvmApp"
          >
+   <!--DataContext="{Store vm:MainViewModel}"-->
    <Window.CommandBindings>
       <CommandBinding   Command="{x:Static ApplicationCommands.Close}"
                         Executed="ExecutedCloseCommand"
@@ -80,17 +80,17 @@
 
       <ContentControl Grid.Row="2" Content="{Binding}" ContentTemplate ="{StaticResource StatusBarTemplate}" />
 
-      <StackPanel Grid.Row="3" Orientation="Vertical">
-         <!--#region    Assembly.GetExecutingAssembly()-->
-         <!--Свернутый блок текста, содержащий после инициализации полное имя текущей сборки и тригер оповещающий о загрузке ViewModel посредством вызова команды-->
-         <TextBlock x:Name="txbAssemblyVersion" Visibility="Collapsed">
+      <!--<StackPanel Grid.Row="3" Orientation="Vertical">
+         --><!--#region    Assembly.GetExecutingAssembly()-->
+         <!--Свернутый блок текста, содержащий после инициализации полное имя текущей сборки и тригер оповещающий о загрузке ViewModel посредством вызова команды--><!--
+         <TextBlock x:Name="txbAssemblyVersion" Visibility="Visible"> --><!--Text="{Binding ViewAssemblyVersion}">--><!--
             <i:Interaction.Triggers>
                <i:EventTrigger EventName="Loaded">          
                   <i:InvokeCommandAction Command="{Binding GetViewAssemblyCommand}" CommandParameter="{Binding ElementName=txbAssemblyVersion, Path=Text}"/>
                </i:EventTrigger>
             </i:Interaction.Triggers>
          </TextBlock>
-         <!--#endregion Assembly.GetExecutingAssembly()-->
-      </StackPanel>
+         --><!--#endregion Assembly.GetExecutingAssembly()--><!--
+      </StackPanel>-->
    </Grid>
 </Window>
